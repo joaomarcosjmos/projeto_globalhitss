@@ -59,6 +59,12 @@ public class ProdutoResource {
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoSalvo);
     }
 
+    @DeleteMapping("/{codigo}")
+    @ResponseStatus(HttpStatus.NO_CONTENT) //Retorna um código 204
+    public void remover(@PathVariable Long codigo){
+        produtoRepository.delete(codigo);
+    }
+
 
 
 
