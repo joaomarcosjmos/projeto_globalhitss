@@ -11,18 +11,18 @@ import org.springframework.stereotype.Service;
 public class ProdutoService {
 
     @Autowired
-    private ProdutoRepository pessoaRepository;
+    private ProdutoRepository produtoRepository;
 
     public Produto atualizar(Long codigo, Produto produto){
 
         Produto produtoSalvo = buscarProdutoPeloCodigo(codigo);
         BeanUtils.copyProperties(produto, produtoSalvo, "codigo");
 
-        return pessoaRepository.save(produtoSalvo);
+        return produtoRepository.save(produtoSalvo);
     }
 
     public Produto buscarProdutoPeloCodigo(Long codigo) {
-        Produto produtoSalvo = pessoaRepository.findOne(codigo);
+        Produto produtoSalvo = produtoRepository.findOne(codigo);
         if (produtoSalvo == null){
 
             throw new EmptyResultDataAccessException(1);
