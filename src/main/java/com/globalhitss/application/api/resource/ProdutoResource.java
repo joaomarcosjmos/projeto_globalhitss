@@ -3,6 +3,7 @@ package com.globalhitss.application.api.resource;
 import com.globalhitss.application.api.event.RecursoCriadoEvent;
 import com.globalhitss.application.api.model.Produto;
 import com.globalhitss.application.api.repository.ProdutoRepository;
+import com.globalhitss.application.api.resource.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,9 @@ public class ProdutoResource {
 
     @Autowired
     private ApplicationEventPublisher publisher;
+
+    @Autowired
+    private ProdutoService produtoService;
 
     /**
      * Buscar todos produtos
@@ -63,6 +67,12 @@ public class ProdutoResource {
     @ResponseStatus(HttpStatus.NO_CONTENT) //Retorna um código 204
     public void remover(@PathVariable Long codigo){
         produtoRepository.delete(codigo);
+    }
+
+    @PutMapping("/{codigo}")
+    ResponseEntity<Produto> atualizar(@PathVariable Long codigo, @Valid @RequestBody Produto produto){
+        Produto produtoSalvo = produtoService.atualizar(codigo, produto);
+        return ResponseEntity.ok(produtoSalvo);
     }
 
 
