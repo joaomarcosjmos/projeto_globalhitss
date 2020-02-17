@@ -1,5 +1,5 @@
 # projeto_globalhitss
-Projeto teste
+Projeto "Client e WebService Rest"
 
 #Servidor Tomcat embutido no Spring boot
 
